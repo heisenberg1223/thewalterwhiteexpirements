@@ -228,7 +228,7 @@ void App::OnLoop() {
 }
 
 void App::HandleInput() {
-  if (IsKeyPressed(KEY_CAPS_LOCK))
+  if (IsKeyPressed(KEY_ESCAPE))
     isRunning = false;
 
   // Input for asac player. PLAYER_SPEED defined in Player.hpp
