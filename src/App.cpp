@@ -294,5 +294,8 @@ void App::OnExit() {
   UnloadSound(asac_speak);
   UnloadSound(heisenberg_speak);
 
+  UnloadSound(bb_theme);
+  UnloadSound(bcs_theme);
+
   CloseWindow();
 }

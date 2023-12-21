@@ -1,5 +1,4 @@
 #include "App.hpp"
-#include "Error/ErrorCallback.hpp"
 
 int main(int argc, char **argv) {
   int *window_width = new int(1600);
