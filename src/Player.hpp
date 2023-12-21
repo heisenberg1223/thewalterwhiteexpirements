@@ -5,7 +5,7 @@
 
 #include <raylib.h>
 
-#define PLAYER_SPEED 5
+#define PLAYER_SPEED 9
 
 #define PLAYER_WIDTH 100
 #define PLAYER_HEIGHT 125
