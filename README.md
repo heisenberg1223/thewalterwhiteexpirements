@@ -5,6 +5,8 @@
 ***********************
 **Building for linux**
 
+* Make sure that raylib and glfw are installed on your system
+
 * Run the following commands:
 
         make
