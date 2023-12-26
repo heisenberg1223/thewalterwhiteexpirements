@@ -2,6 +2,12 @@ NOTE: this repository has been moved from https://notabug.org/heisenberg123/thew
 
 # The Walter White Expirements 
 
+## Dependencies
+***********************
+* Raylib
+* GLFW
+***********************
+
 ## Building
 
 ***********************
@@ -16,7 +22,8 @@ NOTE: this repository has been moved from https://notabug.org/heisenberg123/thew
 * You can then run the executable with
 
         ./thewalterwhiteexpirements
-
+  
+You can also alternatively just download the binary from the releases tab.
 <br>
 
 **Building for windows**
