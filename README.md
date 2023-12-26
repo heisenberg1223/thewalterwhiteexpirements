@@ -1,3 +1,5 @@
+NOTE: this repository has been moved from https://notabug.org/heisenberg123/thewalterwhiteexpirementscpp.git
+
 # The Walter White Expirements 
 
 ## Building
