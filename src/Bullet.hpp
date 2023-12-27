@@ -22,18 +22,18 @@ class Bullet {
       }
     }
 
-    inline void append(std::pair<short int, short int> pair) {
+    void append(std::pair<short int, short int> pair) {
       bullets.push_back(pair);
     }
 
-    inline void del(std::pair<short int, short int> pair) {
+    void del(std::pair<short int, short int> pair) {
       auto it = std::find(bullets.begin(), bullets.end(), pair);
       if (it != bullets.end()) {
         bullets.erase(it);
       }
     }
 
-    inline void wipe() {
+    void wipe() {
       bullets.clear();
     }
   private:
