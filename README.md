@@ -24,6 +24,7 @@ NOTE: this repository has been moved from https://notabug.org/heisenberg123/thew
         ./thewalterwhiteexpirements
   
 You can also alternatively just download the binary from the releases tab.
+- NOTE: if you download the binary, you still have to clone the source as the binary still requires the ./assets folder
 <br>
 
 **Building for windows**
