@@ -5,7 +5,7 @@ link-target = ./thewalterwhiteexpirements
 LIBS = -lraylib -lGL -lglfw -lopenal -lm -lpthread -ldl
 
 # Deifine any CFLAGS
-CFLAGS = --std=c++20 -O3
+CFLAGS = --std=c++20 -O3 -Wall
 
 # Define the objects
 objects = $(patsubst %.cpp, %.o, $(wildcard ./src/*.cpp))
