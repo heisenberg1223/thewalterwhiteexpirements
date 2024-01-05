@@ -231,6 +231,9 @@ void App::HandleInput() {
   if (IsKeyPressed(KEY_ESCAPE))
     isRunning = false;
 
+  if (WindowShouldClose())
+    isRunning = false;
+
   // Input for asac player. PLAYER_SPEED defined in Player.hpp
   if (IsKeyDown(KEY_W) && asac.pos_y() > 0)
     asac.SetYPos(asac.pos_y() - PLAYER_SPEED);
