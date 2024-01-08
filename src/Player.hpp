@@ -31,15 +31,11 @@ class Player {
       health--;
     }
 
-    inline void freeze_health() {
-      health = 5;
-    }
-
     inline void reset_health() {
       health = STARTING_HP;
     }
 
-    inline unsigned long int GetHealth() {
+    inline unsigned short int GetHealth() {
       return health;
     }
 
@@ -56,7 +52,7 @@ class Player {
       short int x, y;
     } pos;
 
-    unsigned long int health;
+    unsigned short int health;
 
     bool hasWon;
 };

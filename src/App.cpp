@@ -230,8 +230,7 @@ void App::HandleInput() {
   if (IsKeyPressed(KEY_ESCAPE))
     isRunning = false;
 
-  if (WindowShouldClose())
-    isRunning = false;
+  isRunning = !WindowShouldClose();
 
   // Input for asac player. PLAYER_SPEED defined in Player.hpp
   if (IsKeyDown(KEY_W) && asac.pos_y() > 0)
