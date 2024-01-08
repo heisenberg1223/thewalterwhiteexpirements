@@ -5,5 +5,5 @@ Player::Player() {
   pos.y = 0;
 
   health = STARTING_HP;
-  won = false;
+  hasWon = false;
 }

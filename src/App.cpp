@@ -1,19 +1,18 @@
 #include "App.hpp"
 
-using namespace Error;
 using namespace Collision;
 
 App::App(int *window_width, int *window_height, const char *window_name) {
   if (*window_width <= 0 || *window_height <= 0) {
-    fError("one or more of the given window dimensions are too small (<= 0).", ERROR_FATAL);
-    fWarning("Unless you have modified the source code, this should not be happening. This also might be due to memory corruption.");
+    LOG::ERROR("one or more of the given window dimensions are too small (<= 0).", ERROR_FATAL);
+    LOG::WARNING("Unless you have modified the source code, this should not be happening. This also might be due to memory corruption.");
 
     exit(EXIT_FAILURE);
   }
 
   if (strlen(window_name) == 0) {
-    fError("the given window name is empty.", ERROR_FATAL);
-    fWarning("Unless you have modified the source code, this should not be happening.");
+    LOG::ERROR("the given window name is empty.", ERROR_FATAL);
+    LOG::WARNING("Unless you have modified the source code, this should not be happening.");
 
     exit(EXIT_FAILURE);
   }
@@ -30,7 +29,7 @@ App::App(int *window_width, int *window_height, const char *window_name) {
       || !FileExists("./assets/heisenberg_speak.mp3") || !FileExists("./assets/bb_theme.mp3") 
       || !FileExists("./assets/bcs_theme.mp3")) {
 
-    fError("one or more required assets files are missing. Please redownload the source code.", ERROR_FATAL);
+    LOG::ERROR("one or more required assets files are missing. Please redownload the source code.", ERROR_FATAL);
 
     exit(EXIT_FAILURE);
   }
@@ -114,25 +113,25 @@ void App::OnLoop() {
   for (auto &[x, y]: asac_bullets.GetBullets()) {
     x += BULLET_SPEED; // BULLET_SPEED defined in Bullet.hpp
 
-    if (CheckCollision(std::make_pair(heisenberg.pos_x(), heisenberg.pos_y()),
+    if (s_CheckCollision(std::make_pair(heisenberg.pos_x(), heisenberg.pos_y()),
           std::make_pair(x, y), PLAYER_WIDTH, PLAYER_HEIGHT, BULLET_WIDTH, BULLET_HEIGHT)) {
 
       // the heisenberg player has been hit. delete the bullet and add one health to asac, minus one health to heisenberg
       asac_bullets.del(std::make_pair(x, y));
 
       // MAX_HP defined in Player.hpp
-      if (asac.GetHealth() < MAX_HP && (!asac.won && !heisenberg.won)) {
+      if (asac.GetHealth() < MAX_HP && (!asac.HasWon() && !heisenberg.HasWon())) {
         asac.add_health();
       }
 
       // Do not remove heisenberg's hp anymore if it is 0.
-      if (heisenberg.GetHealth() > 0 && (!asac.won && !heisenberg.won)) {
+      if (heisenberg.GetHealth() > 0 && (!asac.HasWon() && !heisenberg.HasWon())) {
         heisenberg.rem_health();
       }
 
       // Check if asac has lost all of his HP
       if (heisenberg.GetHealth() == 0) {
-        asac.won = true;
+        asac.SetWinState(true);
       }
 
       // Play the asac speak
@@ -147,25 +146,25 @@ void App::OnLoop() {
   for (auto &[x, y]: heisenberg_bullets.GetBullets()) {
     x -= BULLET_SPEED;
 
-    if (CheckCollision(std::make_pair(asac.pos_x(), asac.pos_y()), 
+    if (s_CheckCollision(std::make_pair(asac.pos_x(), asac.pos_y()), 
           std::make_pair(x, y), PLAYER_WIDTH, PLAYER_HEIGHT, BULLET_WIDTH, BULLET_HEIGHT)) {
 
       // the asac player has been hit. delete the bullet and add one health to heisenberg, minus one health to asac
       heisenberg_bullets.del(std::make_pair(x, y));
 
       // MAX_HP defined in Player.hpp
-      if (heisenberg.GetHealth() < MAX_HP && (!heisenberg.won && !asac.won)) {
+      if (heisenberg.GetHealth() < MAX_HP && (!heisenberg.HasWon() && !asac.HasWon())) {
         heisenberg.add_health();
       }
 
       // Do not remove asac's hp anymore if it is 0.
-      if (asac.GetHealth() > 0 && (!heisenberg.won && !asac.won)) {
+      if (asac.GetHealth() > 0 && (!heisenberg.HasWon() && !asac.HasWon())) {
         asac.rem_health();
       }
 
       // Check if heisenberg has lost all of his HP
       if (asac.GetHealth() == 0) {
-        heisenberg.won = true;
+        heisenberg.SetWinState(true);
       }
       
       // play the heisenberg speak
@@ -177,13 +176,13 @@ void App::OnLoop() {
   }
 
   // winner checking
-  if (asac.won) {
+  if (asac.HasWon()) {
     // Wait to space to be pressed to start the game again.
     if (IsKeyPressed(KEY_SPACE)) {
       asac.reset_health();
       heisenberg.reset_health();
 
-      asac.won = false;
+      asac.SetWinState(false);
 
       asac_bullets.wipe();
       heisenberg_bullets.wipe();
@@ -197,13 +196,13 @@ void App::OnLoop() {
       PlaySound(bcs_theme);
       PlaySound(bb_theme);
     }
-  } else if (heisenberg.won) {
+  } else if (heisenberg.HasWon()) {
     // Wait to space to be pressed to start the game again.
     if (IsKeyPressed(KEY_SPACE)) {
       asac.reset_health();
       heisenberg.reset_health();
 
-      heisenberg.won = false;
+      heisenberg.SetWinState(false);
 
       heisenberg_bullets.wipe();
       asac_bullets.wipe();
@@ -230,8 +229,9 @@ void App::OnLoop() {
 void App::HandleInput() {
   if (IsKeyPressed(KEY_ESCAPE))
     isRunning = false;
-  
-  isRunning = !WindowShouldClose();
+
+  if (WindowShouldClose())
+    isRunning = false;
 
   // Input for asac player. PLAYER_SPEED defined in Player.hpp
   if (IsKeyDown(KEY_W) && asac.pos_y() > 0)
@@ -279,10 +279,10 @@ void App::Draw() {
     DrawText(TextFormat("HP: %d", asac.GetHealth()), 40, 40, 40, BLACK);
     DrawText(TextFormat("HP: %d", heisenberg.GetHealth()), GetScreenWidth() - 200, 40, 40, BLACK);
 
-    if (asac.won) {
-      DrawText("ASAC Schrader has won! Press Space to play again.", GetScreenWidth() / 4 - 200, GetScreenHeight() / 2 - 50 / 2, 50, BLACK);
-    } else if (heisenberg.won) {
-      DrawText("Heisenberg has won! Press Space to play again.", GetScreenWidth() / 4 - 200, GetScreenHeight() / 2 - 50 / 2, 50, BLACK);
+    if (asac.HasWon()) {
+      DrawText("ASAC Schrader has.HasWon()! Press Space to play again.", GetScreenWidth() / 4 - 200, GetScreenHeight() / 2 - 50 / 2, 50, BLACK);
+    } else if (heisenberg.HasWon()) {
+      DrawText("Heisenberg has.HasWon()! Press Space to play again.", GetScreenWidth() / 4 - 200, GetScreenHeight() / 2 - 50 / 2, 50, BLACK);
     }
 
   EndDrawing();

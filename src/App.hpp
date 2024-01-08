@@ -8,12 +8,12 @@
 #include <iostream>
 #include <cstring>
 
-#include "Error/ErrorCallback.hpp"
+#include "Log/LogCallback.hpp"
 #include "Player.hpp"
 #include "Bullet.hpp"
 #include "Collision.hpp"
 
-#define FPS 75
+#define FPS 60
 
 class App {
   public:
@@ -27,6 +27,8 @@ class App {
     void HandleInput();
     void OnLoop();
     void Draw();
+
+    void CallWinner(Player &player);
 
   private:
     int *w_width = new int;

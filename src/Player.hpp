@@ -31,23 +31,34 @@ class Player {
       health--;
     }
 
+    inline void freeze_health() {
+      health = 5;
+    }
+
     inline void reset_health() {
       health = STARTING_HP;
     }
 
-    inline unsigned short int GetHealth() {
+    inline unsigned long int GetHealth() {
       return health;
     }
 
-  public:
-    bool won;
+    inline bool HasWon() {
+      return hasWon;
+    }
+
+    void SetWinState(bool state) {
+      hasWon = state;
+    }
 
   protected:
     struct pos {
       short int x, y;
     } pos;
 
-    unsigned short int health;
+    unsigned long int health;
+
+    bool hasWon;
 };
 
 #endif
