@@ -1,5 +1,3 @@
-Some images and music from this repository may contain copyrighted material, the use of which may not have been specifically authorized by the copyright owner. Under section 107 of the Copyright Act of 1976, allowance is made for “fair use” for purposes such as criticism, comment, news reporting, teaching, scholarship, education and research. Fair use is a use permitted by copyright statute that might otherwise be infringing. Non-profit, educational or personal use tips the balance in favor of fair use
-
 NOTE: this repository has been moved from https://notabug.org/heisenberg123/thewalterwhiteexpirementscpp.git
 
 # The Walter White Expirements 
