@@ -24,10 +24,10 @@ App::App(int *window_width, int *window_height, const char *window_name) {
   isRunning = true;
 
   //Check if the required asset files exist
-  if (!FileExists("./assets/asac.png") || !FileExists("./assets/heisenberg.png") || 
-      !FileExists("./assets/background.png") || !FileExists("./assets/asac_speak.mp3")
-      || !FileExists("./assets/heisenberg_speak.mp3") || !FileExists("./assets/bb_theme.mp3") 
-      || !FileExists("./assets/bcs_theme.mp3")) {
+  if (!FileExists("./assets/textures/asac.png") || !FileExists("./assets/textures/heisenberg.png") || 
+      !FileExists("./assets/textures/background.png") || !FileExists("./assets/audio/asac_speak.mp3")
+      || !FileExists("./assets/audio/heisenberg_speak.mp3") || !FileExists("./assets/audio/bb_theme.mp3") 
+      || !FileExists("./assets/audio/bcs_theme.mp3")) {
 
     LOG::ERROR("one or more required assets files are missing. Please redownload the source code.", ERROR_FATAL);
 
@@ -60,34 +60,34 @@ void App::OnInit() {
 
 void App::LoadAssets() {
   // Load the background image
-  Image img = LoadImage("./assets/background.png");
+  Image img = LoadImage("./assets/textures/background.png");
   ImageResize(&img, GetScreenWidth(), GetScreenHeight());
   background_tex = LoadTextureFromImage(img);
   UnloadImage(img);
 
   // Load the asac player image
-  img = LoadImage("./assets/asac.png");
+  img = LoadImage("./assets/textures/asac.png");
   ImageResize(&img, PLAYER_WIDTH, PLAYER_HEIGHT);
   asac_tex = LoadTextureFromImage(img);
   UnloadImage(img);
 
   // Load the heisenberg player image
-  img = LoadImage("./assets/heisenberg.png");
+  img = LoadImage("./assets/textures/heisenberg.png");
   ImageResize(&img, PLAYER_WIDTH, PLAYER_HEIGHT);
   heisenberg_tex = LoadTextureFromImage(img);
   UnloadImage(img);
 
 
   // Load the background themes
-  bcs_theme = LoadSound("./assets/bcs_theme.mp3");
+  bcs_theme = LoadSound("./assets/audio/bcs_theme.mp3");
   SetSoundVolume(bcs_theme, 0.2f);
 
-  bb_theme = LoadSound("./assets/bb_theme.mp3");
+  bb_theme = LoadSound("./assets/audio/bb_theme.mp3");
   SetSoundVolume(bb_theme, 0.2f);
 
   //Load the players speaking sounds
-  asac_speak = LoadSound("./assets/asac_speak.mp3");
-  heisenberg_speak = LoadSound("./assets/heisenberg_speak.mp3");
+  asac_speak = LoadSound("./assets/audio/asac_speak.mp3");
+  heisenberg_speak = LoadSound("./assets/audio/heisenberg_speak.mp3");
 }
 
 int App::OnExecute() {
