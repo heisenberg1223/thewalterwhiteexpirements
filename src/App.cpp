@@ -1,4 +1,5 @@
 #include "App.hpp"
+#include <raylib.h>
 
 using namespace Collision;
 
@@ -38,6 +39,8 @@ App::App(int *window_width, int *window_height, const char *window_name) {
 }
 
 void App::OnInit() {
+  SetTraceLogLevel(LOG_ERROR);
+
   InitWindow(*w_width, *w_height, w_name);
   InitAudioDevice();
 
