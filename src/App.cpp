@@ -1,5 +1,4 @@
 #include "App.hpp"
-#include <raylib.h>
 
 using namespace Collision;
 
