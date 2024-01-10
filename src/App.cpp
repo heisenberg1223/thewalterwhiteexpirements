@@ -185,6 +185,7 @@ void App::OnLoop() {
       heisenberg.reset_health();
 
       asac.SetWinState(false);
+      heisenberg.SetWinState(false);
 
       asac_bullets.wipe();
       heisenberg_bullets.wipe();
