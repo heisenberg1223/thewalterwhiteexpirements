@@ -281,9 +281,9 @@ void App::Draw() {
     DrawText(TextFormat("HP: %d", heisenberg.GetHealth()), GetScreenWidth() - 200, 40, 40, BLACK);
 
     if (asac.HasWon()) {
-      DrawText("ASAC Schrader has.HasWon()! Press Space to play again.", GetScreenWidth() / 4 - 200, GetScreenHeight() / 2 - 50 / 2, 50, BLACK);
+      DrawText("ASAC Schrader has won! Press Space to play again.", GetScreenWidth() / 4 - 200, GetScreenHeight() / 2 - 50 / 2, 50, BLACK);
     } else if (heisenberg.HasWon()) {
-      DrawText("Heisenberg has.HasWon()! Press Space to play again.", GetScreenWidth() / 4 - 200, GetScreenHeight() / 2 - 50 / 2, 50, BLACK);
+      DrawText("Heisenberg has won! Press Space to play again.", GetScreenWidth() / 4 - 200, GetScreenHeight() / 2 - 50 / 2, 50, BLACK);
     }
 
   EndDrawing();
