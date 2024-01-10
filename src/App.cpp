@@ -178,7 +178,7 @@ void App::OnLoop() {
   }
 
   // winner checking
-  if (asac.HasWon()) {
+  if (asac.HasWon() || heisenberg.HasWon()) {
     // Wait to space to be pressed to start the game again.
     if (IsKeyPressed(KEY_SPACE)) {
       asac.reset_health();
@@ -188,26 +188,6 @@ void App::OnLoop() {
 
       asac_bullets.wipe();
       heisenberg_bullets.wipe();
-
-      asac.SetXPos(GetScreenWidth() / 2 - PLAYER_WIDTH - 5);
-      asac.SetYPos(GetScreenHeight() / 2 - (PLAYER_HEIGHT / 2));
-
-      heisenberg.SetXPos(GetScreenWidth() / 2 + 5);
-      heisenberg.SetYPos(GetScreenHeight() / 2 - (PLAYER_HEIGHT / 2));
-
-      PlaySound(bcs_theme);
-      PlaySound(bb_theme);
-    }
-  } else if (heisenberg.HasWon()) {
-    // Wait to space to be pressed to start the game again.
-    if (IsKeyPressed(KEY_SPACE)) {
-      asac.reset_health();
-      heisenberg.reset_health();
-
-      heisenberg.SetWinState(false);
-
-      heisenberg_bullets.wipe();
-      asac_bullets.wipe();
 
       asac.SetXPos(GetScreenWidth() / 2 - PLAYER_WIDTH - 5);
       asac.SetYPos(GetScreenHeight() / 2 - (PLAYER_HEIGHT / 2));
