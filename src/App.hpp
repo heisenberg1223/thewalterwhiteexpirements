@@ -28,8 +28,6 @@ class App {
     void OnLoop();
     void Draw();
 
-    void CallWinner(Player &player);
-
   private:
     int *w_width = new int;
     int *w_height = new int;
