@@ -15,6 +15,10 @@ NOTE: this repository has been moved from https://notabug.org/heisenberg123/thew
 
 * Make sure that raylib and glfw are installed on your system
 
+* Clone the repository
+  
+          git clone https://github.com/heisenberg1223/thewalterwhiteexpirements.git --recurse-submodules
+
 * Run the following commands:
 
         make
