@@ -1,3 +1,13 @@
+ifdef NOSOUND
+	ifeq ($(NOSOUND), true)
+		CFLAGS = -DNO_SOUND
+	else
+		CFLAGS = 
+	endif
+else
+	CFLAGS = 
+endif
+
 # Define the link target
 link-target = ./thewalterwhiteexpirements
 
@@ -5,7 +15,7 @@ link-target = ./thewalterwhiteexpirements
 LIBS = -lraylib -lGL -lglfw -lopenal -lm -lpthread -ldl
 
 # Deifine any CFLAGS
-CFLAGS = --std=c++20 -O3 -Wall
+CFLAGS += --std=c++20 -O3 -Wall -Wextra
 
 # Define the objects
 objects = $(patsubst %.cpp, %.o, $(wildcard ./src/*.cpp))
@@ -21,6 +31,5 @@ $(link-target): $(objects)
 %.o: %.cpp
 	g++ -o $@ -c $< $(CFLAGS)
 
-.PHONY: clean
 clean:
 	rm -vrf $(rebuildables)

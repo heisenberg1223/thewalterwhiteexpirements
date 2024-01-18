@@ -12,6 +12,7 @@
 #include "Player.hpp"
 #include "Bullet.hpp"
 #include "Collision.hpp"
+#include "Menu.hpp"
 
 #define FPS 60
 
@@ -22,7 +23,7 @@ class App {
     void OnInit();
     void LoadAssets();
     int OnExecute();
-    void OnExit();
+    void OnExit() const;
 
     void HandleInput();
     void OnLoop();
@@ -34,7 +35,7 @@ class App {
 
     char *w_name = new char;
 
-    bool isRunning;
+    bool windowShouldClose, isRunning;
 
     Texture2D background_tex, asac_tex, heisenberg_tex;
 

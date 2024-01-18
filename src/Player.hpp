@@ -13,41 +13,42 @@
 #define STARTING_HP 10
 #define MAX_HP 15
 
+enum PlayerNames {
+  ASAC, HEISENBERG
+};
+
 class Player {
   public:
+    // constructor
     Player();
 
+    // return the x or y pos of the player.
     short int pos_x() { return pos.x; };
     short int pos_y() { return pos.y; };
 
+    // Set the x or y pos of the player.
     void SetXPos(const int x) { pos.x = x; };
     void SetYPos(const int y) { pos.y = y; };
 
-    inline void add_health() {
-      health++;
-    }
+    // increase the players health by one
+    inline void add_health() { health++; };
 
-    inline void rem_health() {
-      health--;
-    }
+    // decrement the players health by one.
+    inline void rem_health() { health--; };
 
-    inline void reset_health() {
-      health = STARTING_HP;
-    }
+    // reset the players health
+    inline void reset_health() { health = STARTING_HP; };
 
-    inline unsigned short int GetHealth() {
-      return health;
-    }
+    // return the players health
+    unsigned short int GetHealth() { return health; };
 
-    inline bool HasWon() {
-      return hasWon;
-    }
+    // return the player won state
+    bool HasWon() { return hasWon; };
 
-    void SetWinState(bool state) {
-      hasWon = state;
-    }
+    // set the player win state
+    inline void SetWinState(bool state) { hasWon = state; };
 
-  protected:
+  private:
     struct pos {
       short int x, y;
     } pos;

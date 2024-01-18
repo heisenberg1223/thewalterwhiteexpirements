@@ -7,7 +7,7 @@
 
 enum LogLevels {
   ERROR_FATAL, ERROR_NORMAL, ERROR_NETWORK_FATAL, ERROR_NETWORK_NORMAL
-};
+}; // the different log levels
 
 #define ANSI_RED "\x1b[1;31m"
 #define ANSI_YELLOW "\033[1;33m"
@@ -15,6 +15,7 @@ enum LogLevels {
 
 namespace LOG {
 
+  // this function prints a error to the terminal in red text using ascii excape codes.
   inline static void ERROR(const char *desc, LogLevels errorlvl) noexcept {
     switch (errorlvl) {
       case (ERROR_FATAL):
@@ -36,6 +37,7 @@ namespace LOG {
     }
   }
 
+  // this function prints a yellow warning text to the terminal using ascii escape codes.
   inline static void WARNING(const char *desc) noexcept {
     std::cout << ANSI_YELLOW << "WARNING: -- " << END_ANSI;
     std::cout << desc << '\n';
