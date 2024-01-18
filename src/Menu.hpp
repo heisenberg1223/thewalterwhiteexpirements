@@ -41,12 +41,6 @@ class Menu {
     static bool s_IsMenuActive() { return isMenuActive; };
     static void s_SetMenuActiveState(bool state) { isMenuActive = state; };
 
-    // ### Popup menu functions ###
-
-    // Show a popup function that shows each players stats after the game. The user will be asked if they want to return to the main menu or play again.
-    // The playerName argument tells the function which player has won.
-    static void s_ShowPostGamePopUpMenu(PlayerNames playerName);
-
     // draw the quit message and return the option choosed.
     static ButtonEvents s_ShowQuitPopUpMenu();
 

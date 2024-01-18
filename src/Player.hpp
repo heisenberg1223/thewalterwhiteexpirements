@@ -13,10 +13,6 @@
 #define STARTING_HP 10
 #define MAX_HP 15
 
-enum PlayerNames {
-  ASAC, HEISENBERG
-};
-
 class Player {
   public:
     // constructor
