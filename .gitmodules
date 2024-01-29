@@ -1,3 +1,6 @@
 [submodule "lib/raygui"]
 	path = lib/raygui
 	url = https://github.com/raysan5/raygui
+[submodule "lib/LOG"]
+	path = lib/LOG
+	url = https://github.com/heisenberg1223/logging-library

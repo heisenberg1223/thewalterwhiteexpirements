@@ -8,7 +8,7 @@
 #include <iostream>
 #include <cstring>
 
-#include "Log/LogCallback.hpp"
+#include "../lib/LOG/LogCallback.hpp"
 #include "Player.hpp"
 #include "Bullet.hpp"
 #include "Collision.hpp"

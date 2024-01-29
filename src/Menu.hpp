@@ -4,7 +4,7 @@
 #define MENU_HPP
 
 
-#include "Log/LogCallback.hpp"
+#include "../lib/LOG/LogCallback.hpp"
 #include "Player.hpp"
 
 #include <raylib.h>
