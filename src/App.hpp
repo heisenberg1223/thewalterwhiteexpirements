@@ -13,8 +13,7 @@
 #include "Bullet.hpp"
 #include "Collision.hpp"
 #include "Menu.hpp"
-
-#define FPS 60
+#include "Config/Config.hpp"
 
 class App {
   public:

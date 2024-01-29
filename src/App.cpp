@@ -1,5 +1,4 @@
 #include "App.hpp"
-#include "Menu.hpp"
 
 using namespace Collision;
 
@@ -36,7 +35,7 @@ App::App(int *window_width, int *window_height, const char *window_name) {
     exit(EXIT_FAILURE);
   }
 
-  std::cout << "Game initilized.\n";
+  LOG::INFO("Game succesfully initilized.");
 }
 
 void App::OnInit() {
@@ -128,7 +127,7 @@ int App::OnExecute() {
 
       switch (Menu::s_PollMainMenuButtonEvents()) {
         case (EVENT_START_LOCAL_GAME):
-          std::cout << "Starting local game...\n";
+          LOG::INFO("Starting local game...");
           Menu::s_SetMenuActiveState(false);
 
 #ifndef NO_SOUND
@@ -157,7 +156,7 @@ int App::OnExecute() {
           break;
 
         case (EVENT_START_MULTIPLAYER_GAME):
-          std::cout << "to be implemented later...\n";
+          LOG::INFO("multiplayer mode has not been implemented yet.");
 
           break;
 

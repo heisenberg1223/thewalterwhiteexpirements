@@ -8,9 +8,7 @@
 #include <utility>
 #include <algorithm>
 
-#define BULLET_WIDTH 50
-#define BULLET_HEIGHT 5
-#define BULLET_SPEED 12
+#include "Config/Config.hpp"
 
 class Bullet {
   public:
